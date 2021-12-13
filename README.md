@@ -3,148 +3,46 @@ https://ipfs.io/ipfs/QmcKCnKKagzZSwg2E7U4s2sHwyhFGjE7Npgw2Ch2Y7CJA3
 
 MiniThorGodsHammer
 
-Functions
-
-constructor
-
-No parameters
-
-Returns:
-
-No parameters
-
-DOMAIN_SEPARATOR
-
-See {IERC20Permit-DOMAIN_SEPARATOR}.
-
-No parameters
-
-Returns:
-
-NameTypeDescriptionbytes32allowance
-
-See {IERC20-allowance}.
-
-NameTypeDescriptionowneraddressspenderaddress
-
-Returns:
-
-NameTypeDescriptionuint256approve
-
-See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
-
-NameTypeDescriptionspenderaddressamountuint256
-
-Returns:
-
-NameTypeDescriptionboolbalanceOf
-
-See {IERC20-balanceOf}.
-
-NameTypeDescriptionaccountaddress
-
-Returns:
-
-NameTypeDescriptionuint256balanceOfAt
-
-Retrieves the balance of `account` at the time `snapshotId` was created.
-
-NameTypeDescriptionaccountaddresssnapshotIduint256
-
-Returns:
-
-NameTypeDescriptionuint256burn
-
-Destroys `amount` tokens from the caller. See {ERC20-_burn}.
-
-NameTypeDescriptionamountuint256
-
-Returns:
-
-No parameters
-
-burnFrom
-
-Destroys `amount` tokens from `account`, deducting from the caller's allowance. See {ERC20-_burn} and {ERC20-allowance}. Requirements: - the caller must have allowance for ``accounts``'s tokens of at least `amount`.
-
-NameTypeDescriptionaccountaddressamountuint256
-
-Returns:
-
-No parameters
-
-decimals
-
-Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
-
-No parameters
-
-Returns:
-
-NameTypeDescriptionuint8decreaseAllowance
-
-Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
-
-NameTypeDescriptionspenderaddresssubtractedValueuint256
-
-Returns:
-
-NameTypeDescriptionboolflashFee
-
-Returns the fee applied when doing flash loans. By default this implementation has 0 fees. This function can be overloaded to make the flash loan mechanism deflationary.
-
-NameTypeDescriptiontokenaddressThe token to be flash loaned.amountuint256The amount of tokens to be loaned.
-
-Returns:
-
-NameTypeDescriptionuint256flashLoan
-
-Performs a flash loan. New tokens are minted and sent to the `receiver`, who is required to implement the {IERC3156FlashBorrower} interface. By the end of the flash loan, the receiver is expected to own amount + fee tokens and have them approved back to the token contract itself so they can be burned.
-
-NameTypeDescriptionreceiveraddressThe receiver of the flash loan. Should implement the {IERC3156FlashBorrower.onFlashLoan} interface.tokenaddressThe token to be flash loaned. Only `address(this)` is supported.amountuint256The amount of tokens to be loaned.databytesAn arbitrary datafield that is passed to the receiver.
-
-Returns:
-
-NameTypeDescriptionboolincreaseAllowance
-
-Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
-
-NameTypeDescriptionspenderaddressaddedValueuint256
-
-Returns:
-
-NameTypeDescriptionboolmaxFlashLoan
-
-Returns the maximum amount of tokens available for loan.
-
-NameTypeDescriptiontokenaddressThe address of the token that is requested.
-
-Returns:
-
-NameTypeDescriptionuint256mint
-
-**Add Documentation for the method here**
-
-NameTypeDescriptiontoaddressamountuint256
-
-Returns:
-
-No parameters
-
-name
-
-Returns the name of the token.
-
-No parameters
-
-Returns:
-
-NameTypeDescriptionstringnonces
-
-See {IERC20Permit-nonces}.
-
-NameTypeDescriptionowneraddress
-
-Returns:
-
-NameTypeDescriptionuint256
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.2;
+
+import "@openzeppelin/contracts@4.4.0/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts@4.4.0/token/ERC20/extensions/ERC20Burnable.sol";
+import "@openzeppelin/contracts@4.4.0/token/ERC20/extensions/ERC20Snapshot.sol";
+import "@openzeppelin/contracts@4.4.0/access/Ownable.sol";
+import "@openzeppelin/contracts@4.4.0/security/Pausable.sol";
+import "@openzeppelin/contracts@4.4.0/token/ERC20/extensions/draft-ERC20Permit.sol";
+import "@openzeppelin/contracts@4.4.0/token/ERC20/extensions/ERC20FlashMint.sol";
+
+contract MiniThorGodsHammer is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable, ERC20Permit, ERC20FlashMint {
+    constructor()
+        ERC20("MiniThorGodsHammer", "MTGH")
+        ERC20Permit("MiniThorGodsHammer")
+    {
+        _mint(msg.sender, 21000000000000000000000000000000000000000 * 10 ** decimals());
+    }
+
+    function snapshot() public onlyOwner {
+        _snapshot();
+    }
+
+    function pause() public onlyOwner {
+        _pause();
+    }
+
+    function unpause() public onlyOwner {
+        _unpause();
+    }
+
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
+    }
+
+    function _beforeTokenTransfer(address from, address to, uint256 amount)
+        internal
+        whenNotPaused
+        override(ERC20, ERC20Snapshot)
+    {
+        super._beforeTokenTransfer(from, to, amount);
+    }
+}
