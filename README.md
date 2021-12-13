@@ -1,3 +1,4 @@
+![android-chrome-192x192](https://user-images.githubusercontent.com/73549208/145884819-716fc1fc-0639-4f3c-98ca-c1989edf0ef0.png)
 # MiniThorGodsHammer Verified Smart Contract On
 https://ipfs.io/ipfs/QmcKCnKKagzZSwg2E7U4s2sHwyhFGjE7Npgw2Ch2Y7CJA3
 
