@@ -1,5 +1,8 @@
-![Screenshot_20211213-154528_Chrome~2](https://user-images.githubusercontent.com/73549208/145887321-4dd7f6f5-94fa-4721-9e83-923e495b1134.jpg)
 ![android-chrome-192x192](https://user-images.githubusercontent.com/73549208/145884819-716fc1fc-0639-4f3c-98ca-c1989edf0ef0.png)
+
+
+
+![Screenshot_20211213-154528_Chrome~2](https://user-images.githubusercontent.com/73549208/145887321-4dd7f6f5-94fa-4721-9e83-923e495b1134.jpg)
 # MiniThorGodsHammer Verified Smart Contract On
 
 https://ipfs.io/ipfs/QmcKCnKKagzZSwg2E7U4s2sHwyhFGjE7Npgw2Ch2Y7CJA3
