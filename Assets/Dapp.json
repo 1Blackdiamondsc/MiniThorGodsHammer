@@ -1,0 +1,9 @@
+// Javascript 
+
+const Web3 = require('Web3') 
+
+// Sign up for a free dedicated RPC URL at https://speedy-nodes-nyc.moralis.io/fe6988f74f3f984fcb9a47c5/polygon/mainnet/ or other hosted node providers.
+const web3 = new Web3('https://speedy-nodes-nyc.moralis.io/fe6988f74f3f984fcb9a47c5/polygon/mainnet') 
+
+// web3 object is now connected with Polygon's node
+    ```
