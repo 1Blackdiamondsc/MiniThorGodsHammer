@@ -11,46 +11,12 @@ https://oneclickdapp.com/calypso-monaco
 
 MiniThorGodsHammer
 
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.2;
+// Javascript 
 
-import "@openzeppelin/contracts@4.4.0/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts@4.4.0/token/ERC20/extensions/ERC20Burnable.sol";
-import "@openzeppelin/contracts@4.4.0/token/ERC20/extensions/ERC20Snapshot.sol";
-import "@openzeppelin/contracts@4.4.0/access/Ownable.sol";
-import "@openzeppelin/contracts@4.4.0/security/Pausable.sol";
-import "@openzeppelin/contracts@4.4.0/token/ERC20/extensions/draft-ERC20Permit.sol";
-import "@openzeppelin/contracts@4.4.0/token/ERC20/extensions/ERC20FlashMint.sol";
+const Web3 = require('Web3') 
 
-contract MiniThorGodsHammer is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable, ERC20Permit, ERC20FlashMint {
-    constructor()
-        ERC20("MiniThorGodsHammer", "MTGH")
-        ERC20Permit("MiniThorGodsHammer")
-    {
-        _mint(msg.sender, 21000000000000000000000000000000000000000 * 10 ** decimals());
-    }
+// Sign up for a free dedicated RPC URL at https://speedy-nodes-nyc.moralis.io/fe6988f74f3f984fcb9a47c5/polygon/mainnet/ or other hosted node providers.
+const web3 = new Web3('https://speedy-nodes-nyc.moralis.io/fe6988f74f3f984fcb9a47c5/polygon/mainnet') 
 
-    function snapshot() public onlyOwner {
-        _snapshot();
-    }
-
-    function pause() public onlyOwner {
-        _pause();
-    }
-
-    function unpause() public onlyOwner {
-        _unpause();
-    }
-
-    function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
-    }
-
-    function _beforeTokenTransfer(address from, address to, uint256 amount)
-        internal
-        whenNotPaused
-        override(ERC20, ERC20Snapshot)
-    {
-        super._beforeTokenTransfer(from, to, amount);
-    }
-}
+// web3 object is now connected with Polygon's node
+    ```
