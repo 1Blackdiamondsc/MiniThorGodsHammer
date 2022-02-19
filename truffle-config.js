@@ -18,7 +18,7 @@ module.exports = {
             provider: function() {
                 return new HDWalletProvider(
                     process.env.MNEMONIC,
-                    `https://ropsten.infura.io/${process.env.INFURA_API_KEY}`
+                    `https://ropsten.infura.io/${process.env.418b831fc93e4a9a6abed04b49580d}`
                 )
             },
             gas: 5000000,
