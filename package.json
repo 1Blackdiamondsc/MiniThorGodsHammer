@@ -37,7 +37,7 @@
         "nodemon": "^1.17.3",
         "openzeppelin-solidity": "4.5.0",
         "solidity-coverage": "^0.7.20",
-        "solium": "^1.1.7",
+        "solium": "^1.2.5",
         "truffle": "5.0.2",
         "truffle-contract": "^3.0.7",
         "truffle-hdwallet-provider": "1.0.17"
