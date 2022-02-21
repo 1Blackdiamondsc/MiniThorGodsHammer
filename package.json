@@ -40,6 +40,6 @@
         "solium": "^1.1.7",
         "truffle": "5.0.2",
         "truffle-contract": "^3.0.7",
-        "truffle-hdwallet-provider": "0.0.5"
+        "truffle-hdwallet-provider": "1.0.17"
     }
 }
